@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import re
 
-# https://docs.google.com/spreadsheets/d/1rQ6zZKcRX25EEcdjI-adiG15go4XxmdTnoYZtXHTkKM/edit#gid=1456502765
 
 SERVICE_ACCOUNT_FILE = 'creds/private_key.json'
 API_SERVICE_NAME = 'sheets'
@@ -65,7 +64,7 @@ def add_sheets(sheet_id, sheet_name, hx2rgb):
 def df_sheets(file_path, sheet_id, sheet_name, sheet_cell):
     df = pd.read_csv(file_path)
     df.replace(np.nan, '', inplace=True)
-    # using pasteData from the example above, you will have to use a combination of validate, update and append
+    # TODO using pasteData from the example above, you will have to use a combination of validate, update and append
     response_date = service.spreadsheets().values().append(
         spreadsheetId=sheet_id,
         valueInputOption='RAW',
@@ -76,8 +75,10 @@ def df_sheets(file_path, sheet_id, sheet_name, sheet_cell):
     ).execute()
 
 
+# UPDATE YOUR HEX COLOR FOR THE SHEET
 add_sheets(SPREADSHEET_ID, WORKSHEET_NAME_1, '#FF0000')
 add_sheets(SPREADSHEET_ID, WORKSHEET_NAME_2, '#6495ED')
 
+# UPDATE THE CELL TO COPY THE DATA
 df_sheets(PATH_TO_URL, SPREADSHEET_ID, WORKSHEET_NAME_1, 'A1')
 df_sheets(PATH_TO_CSV, SPREADSHEET_ID, WORKSHEET_NAME_2, 'A1')
