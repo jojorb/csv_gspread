@@ -8,7 +8,8 @@
 
 - Google API with service account private key
 - Panda
-- add color tab on spreadsheet from hex color
+- Add color tab on spreadsheet from hex color
+- Bypass the raws data limitations from spreadsheet
 
 ## Install
 
